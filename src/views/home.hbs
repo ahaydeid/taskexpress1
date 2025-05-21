@@ -1,0 +1,16 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tes HBS</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+       {{> header}}
+    <h1>Nama Dan Alamat</h1>
+    {{#each data}}
+        <h3>Nama: {{nama}}</h3>
+        <h3>Alamat: {{alamat}}</h3><br>
+    {{/each}}
+  </body>
+</html>

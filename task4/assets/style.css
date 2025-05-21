@@ -1,0 +1,51 @@
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #dce0e4;
+    font-family: "Poppins";
+}
+
+.navbar-expand-lg{
+    background-color: #f4f3f3;
+    height: 65px;
+}
+
+.nav-link{
+    font-size: 20px;
+    margin-right: 40px;
+}
+
+.form form{
+    margin: 50px 50px;
+    width: 700px;
+}
+
+
+label{
+    margin-top: 40px;
+    font-weight: 600;
+    font-size: 38px;
+}
+
+input, .dropdown button{
+    height: 60px;
+    margin-top: -10px;
+    box-shadow: 1px 3px 11px -1px rgba(0,0,0,0.41);
+-webkit-box-shadow: 1px 3px 11px -1px rgba(0,0,0,0.41);
+-moz-box-shadow: 1px 3px 11px -1px rgba(0,0,0,0.41);
+}
+
+.dropdown button{
+    width: 100%;
+}
+
+.btn-submit{
+    font-size: 30px;
+    padding: 5px 45px;
+}
+
+span{
+    font-weight: bold;
+    font-size: 25px;
+    justify-content: center;
+}

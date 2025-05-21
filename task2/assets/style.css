@@ -1,0 +1,163 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  body{
+    background-color:  #dce0e4;
+      /* background-color: #e3e7eb; */
+      font-family: "Poppins";
+      height: 1200px;
+}
+
+
+/* Awal Navbar */
+nav{
+    /* background-color: #e3e7eb; */
+    background-color:  #f4f3f3;
+    padding: 10px 0px 10px 0px;
+    height: 65px;
+    font-weight: 500;
+    position: sticky; 
+    top: 0;
+    z-index: 999; 
+}
+
+nav ul{
+    display: flex;
+    align-items: center;
+}
+
+ul li {
+    color: #8e8d8d;
+    display: inline; 
+    margin-right: 40px;
+    font-size: 20px;
+}
+
+ul li img{
+    margin-left: 40px;
+    display: flex;
+    align-items: center;
+    width: 50px;
+}
+
+.btn-contact-me{
+    margin-right: 70px;
+    padding: 5px 10px 5px 10px; 
+    margin-left: auto;
+    height: 40px;
+    width: 160px;
+    background-color: #111727;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.btn-contact-me a{
+    display: flex;
+    align-items: center;  
+    justify-content: center; 
+    text-decoration: none;
+    color: #fff;
+    }
+    /* Akhir Navbar */
+
+
+
+    /* Awal Card */
+.contain{
+    margin-top: 110px;
+     display: flex;
+    justify-content: center;
+    height: 580px;
+}
+
+.contain .card{
+    border-radius: 10px;
+    width: 1100px;
+    background-color: #fff;
+    box-shadow: 1px 8px 59px -17px rgba(0,0,0,0.64);
+-webkit-box-shadow: 1px 8px 59px -17px rgba(0,0,0,0.64);
+-moz-box-shadow: 1px 8px 59px -17px rgba(0,0,0,0.64);
+}
+
+/* Awal foto profil */
+.foto{
+    text-align: center;
+    width: 80%;
+    height: 480px;
+    margin: 40px 0px 0px 50px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 1px 1px 18px 2px rgba(0,0,0,0.21);
+-webkit-box-shadow: 1px 1px 18px 2px rgba(0,0,0,0.21);
+-moz-box-shadow: 1px 1px 18px 2px rgba(0,0,0,0.21);
+overflow: hidden;
+}
+/* Akhir foto profil */
+
+.row h3{
+    font-weight: 800;
+}
+
+.row h6{
+    margin-top: -5px;
+}
+
+p{
+    font-size: 18px;
+    text-align: justify;
+    line-height: 20px;
+    font-weight: 500;
+}
+
+.col-7 .row-1{
+    padding: 100px 0px 20px 50px;
+}
+
+
+/* Awal Button */
+.row-btn{
+    padding-left: 50px;
+}
+
+.btn .contact{
+    text-decoration: none;
+    margin-right: 70px;
+    padding: 5px 10px 5px 0px; 
+    margin-left: auto;
+    height: 40px;
+    width: 160px;
+    font-size: 18px;
+}
+
+.btn .bg-black{
+    height: 45px;
+    font-size: 22px;
+    width: 140px;
+    border-radius: 50px;
+    margin-right: 40px;
+    font-weight: 500;
+}
+
+.btn .download{
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
+    border: 0;
+    font-weight: 500;
+    background-color: #fff;
+}
+
+/* Awal sosmed */
+.row .row-sosmed{
+    margin-top: 40px;
+    padding-left: 60px;
+}
+
+.row .row-sosmed img{
+    width: 50px;
+    margin-right: 20px;
+}
