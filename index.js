@@ -1,10 +1,8 @@
-const express = require("express");
+import express from "express";
 const app = express();
 const port = 3000;
-const bodyParser = require("body-parser");
 
-app.use(bodyParser.json()); 
-// bisa juga pakai: app.use(express.json()); // Ini adalah untuk versi terbaru yang sudah built in body parser, tapi dipercobaan ini pakai metode lama
+app.use(express.json()); 
 app.set('view engine', 'hbs');
 
 app.get("/", (req, res) => {
