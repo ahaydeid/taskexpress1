@@ -17,7 +17,7 @@
 <!-- Awal Form -->
 <div class="part-1">
       <div class="form d-flex justify-content-center">
-        <form class="p-3" id="project-form" action="submit-project">
+        <form class="p-3" id="project-form">
           <h1 class="text-center text-black fw-bold" style="font-size: 55px">ADD MY PROJECT</h1>
           <div class="mb-3">
             <label for="name" class="form-label">Project Name</label>
@@ -70,7 +70,7 @@
             <label for="file" class="form-label">Upload Image</label>
             <div class="custom-file-upload">
               <span class="choose-label">choose</span>
-              <input class="file-input" id="file-input" type="file" name="project-image">
+              <input class="file-input" id="file-input" type="file" name="image-project">
               <span class="icon">
                 <img src="/assets/icons/clip.svg" alt="icon" style="height: 40px;">
               </span>
@@ -79,7 +79,7 @@
           
           <!-- Button Submit -->
           <div class="wrapper-submit d-flex justify-content-end mt-5">
-            <button type="submit" class="btn bg-black text-white fw-bold btn-submit rounded-5" onclick="loadCard()">submit</button>
+            <button type="submit" class="btn bg-black text-white fw-bold btn-submit rounded-5" onclick="getData(event)">submit</button>
           </div>
         </form>
   </div>
