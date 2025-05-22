@@ -12,6 +12,8 @@ hbs.registerPartials("src/views/partials");
 
 // Middleware
 app.use("/assets", express.static("src/assets"));
+// app.use(express.static(path.join(__dirname, "views")));
+// app.use(express.urlencoded({ extended: false }));
 app.use(express.urlencoded({ extended: false }));
 
 // Routes
