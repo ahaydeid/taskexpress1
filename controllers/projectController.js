@@ -1,83 +1,94 @@
-// import pool from "../models/connect.js";
+import pool from "../models/connect.js";
+import fs from "fs";
 
+export const getAllProjects = async (req, res) => {
+  const result = await pool.query("SELECT * FROM projects ORDER BY created_at DESC");
+  res.render("project", { project: result.rows });
+};
 
-// // Object untuk ubah nilai checkbox menjadi nama file ikon
-// const iconMap = {
-//   node: "node.svg",
-//   react: "react.svg",
-//   next: "next.svg",
-//   typescript: "typescript.svg",
-// };
-// // Mulai jalankan fungsi
-// function transLate() {
-//   // Menghitung selisih dalam bulan antara dua tanggal: start dan end
-//   let yearDifference = end.getFullYear() - start.getFullYear();  // Ambil selisih tahun antara tanggal akhir dan tanggal mulai
-//   let monthsFromYears = yearDifference * 12;  // Ubah selisih tahun ke bulan
-//   let monthDifference = end.getMonth() - start.getMonth();  // Ambil selisih bulan dari tahun yang sama
-//   let durationInMonths = monthsFromYears + monthDifference; // Total durasi dalam bulan
+export const submitProject = async (req, res) => {
+  const { name, "start-date": startDate, "end-date": endDate, desc, node, next, react, typescript } = req.body;
 
-//   let durationLabel = "";
-//   if (durationInMonths < 1) {
-//     durationLabel = ">1 bulan";
-//   } else if (durationInMonths >= 36) {
-//     durationLabel = ">3 tahun";
-//   } else if (durationInMonths >= 24) {
-//     durationLabel = "2 tahun";
-//   } else if (durationInMonths >= 12) {
-//     durationLabel = "1 tahun";
-//   } else {
-//     durationLabel = `${durationInMonths} bulan`;
-//   }
+  const technologies = [];
+  if (node) technologies.push("node");
+  if (next) technologies.push("next");
+  if (react) technologies.push("react");
+  if (typescript) technologies.push("typescript");
+  const imagePath = req.file ? req.file.filename : null;
 
-//   if (isNaN(start.getTime()) || isNaN(end.getTime()) || end < start) {
-//   alert("Tanggal mulai atau selesai tidak valid!");
-//   return;
-// }
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  const year = end.getFullYear();
+  let durationInMonths = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
+  if (end.getDate() >= start.getDate()) durationInMonths += 1;
 
-//   let photoProject = photo? URL.createObjectURL(photo) : "assets/img/logo-dumbways.png";
+  let tempDur = "";
+  if (durationInMonths < 1) tempDur = ">1 bulan";
+  else if (durationInMonths >= 36) tempDur = ">3 tahun";
+  else if (durationInMonths >= 24) tempDur = "2 tahun";
+  else if (durationInMonths >= 12) tempDur = "1 tahun";
+  else tempDur = `${durationInMonths} bulan`;
 
-//   const iconsHTML = Array.from(checkboxes)
-//   .filter(cb => cb.checked && iconMap[cb.value])
-//   .map(cb => {
-//     const iconName = cb.value;
-//     const iconSrc = iconMap[iconName];
-//     return `<img src="assets/icon/${iconSrc}" style="width: 40px; height: 40px;" alt="${iconName}">`;
-//   });
+  await pool.query("INSERT INTO projects (name, start_date, end_date, year, duration, description, technologies, image_path) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)", [
+    name,
+    startDate,
+    endDate,
+    year,
+    tempDur,
+    desc,
+    technologies,
+    imagePath,
+  ]);
 
-//   // Buat elemen project card
-//   const projectCard = document.createElement("div");
-//   projectCard.classList.add("project-card");
-//   projectCard.innerHTML = `
-//         <img src="${photoProject}" alt="" style="width: 100%; height: 250px; object-fit: cover; border-radius: 5px;">
-//         <div class="year" style="display: flex;">
-//             <h5 class="mt-3" style="font-size: 17px;">${name}</h5>
-//             <h5 class="mt-3" style="font-size: 17px;">&nbsp;-&nbsp;${end.getFullYear()}</h5> 
-//         </div>
-//         <div class="mb-3 text-secondary" style="display: flex;">
-//             <h6 class="me-2" style="font-size: 14px;">Durasi :</h6>
-//             <h6 style="font-size: 14px;" class="month">${durationLabel}</h6>
-//         </div>
-//         <div class="desc-box">
-//             <p style="font-size: 14px; margin-right: 25px;" id="desc-text">${description}</p>
-//         </div>
-//         <div class="mb-3 text-secondary d-flex" style="gap: 15px;">
-//             ${iconsHTML.join("")}
-//         </div>
-//         <div class="button-card mb-3" style="display: flex; padding: 5px; gap: 10px;">
-//             <button class="btn edit flex-fill">edit</button>
-//             <button class="btn delete flex-fill">delete</button>
-//         </div>
-//     `;
-//   document.querySelector(".project-container").appendChild(projectCard);
-// }
+  res.redirect("/project");
+};
 
+export const getProjectDetail = async (req, res) => {
+  const { id } = req.params;
+  const result = await pool.query("SELECT * FROM projects WHERE id = $1", [id]);
+  const project = result.rows[0];
 
+  const options = { day: "2-digit", month: "short", year: "numeric" };
+  const startDateFormatted = new Date(project.start_date).toLocaleDateString("en-GB", options);
+  const endDateFormatted = new Date(project.end_date).toLocaleDateString("en-GB", options);
 
+  res.render("detail", {
+    project: {
+      ...project,
+      date_range: `${startDateFormatted} - ${endDateFormatted}`,
+    },
+  });
+};
 
+// Menghapus Proyek
+export const deleteProject = async (req, res) => {
+  const { id } = req.params;
+  try {
+    // Dapatkan informasi project yang akan dihapus
+    const result = await pool.query("SELECT image_path FROM projects WHERE id = $1", [id]);
+    if (result.rows.length === 0) {
+      return res.status(404).send("Project tidak ditemukan");
+    }
 
+    const imagePath = result.rows[0].image_path;
 
-// export function project(req, res) {
-//   pool.query("SELECT * FROM project", (error, result) => {
-//     res.render("project", { project: result.rows });
-//   });
-// }
+    // Hapus dari database
+    await pool.query("DELETE FROM projects WHERE id = $1", [id]);
+
+    // Hapus file gambar di folder uploads
+    if (imagePath) {
+      const filePath = `uploads/${imagePath}`;
+      fs.unlink(filePath, (err) => {
+        if (err) {
+          console.error("Gagal menghapus file:", err);
+        } else {
+        }
+      });
+    }
+
+    res.redirect("/project");
+  } catch (error) {
+    console.error("Gak bisa menghapus project:", error);
+    res.status(500).send("Terjadi kesalahan");
+  }
+};
