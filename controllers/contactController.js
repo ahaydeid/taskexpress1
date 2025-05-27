@@ -15,5 +15,7 @@ export function sendContact(req, res) {
   console.log(phone);
   console.log(subject);
   console.log(message);
-  res.redirect("/contact");
+    res.render("contact", {
+    alertData: { name, email, phone, subject, message }
+  });
 }

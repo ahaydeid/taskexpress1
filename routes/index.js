@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get("/", home);
 router.get("/contact", contact);
-router.post("/submit", sendContact);
+router.post("/submit-contact", sendContact);
 // router.get("/project", project);
 // router.get("/tes", getTes);
 

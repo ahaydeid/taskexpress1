@@ -9,11 +9,15 @@ import pool from "./models/connect.js";
 import fs from "fs";
 
 // Setup view
-
 app.use(express.json());
 app.set("view engine", "hbs");
 app.set("views", "src/views");
 hbs.registerPartials("src/views/partials");
+hbs.registerHelper('eq', function (a, b) {
+  return a === b;
+});
+
+
 
 // Middleware
 app.use("/assets", express.static("src/assets"));
@@ -108,39 +112,6 @@ app.get("/project/:id", async (req, res) => {
   });
 });
 
-// Edit Proyek
-// app.get("/project/edit/:id", async (req, res) => {
-//   const { id } = req.params;
-//   const result = await pool.query("SELECT * FROM projects WHERE id = $1", [id]);
-//   const project = result.rows[0];
-
-//   if (!project) {
-//     return res.status(404).send("Project not found");
-//   }
-//   res.render("edit", { project });
-// });
-
-// app.post("/project/edit/:id", upload.single("image-project"), async (req, res) => {
-//   const { id } = req.params;
-//   const { name, "start-date": startDate, "end-date": endDate, desc, node, next, react, typescript } = req.body;
-
-//   const technologies = [];
-//   if (node) technologies.push("node");
-//   if (next) technologies.push("next");
-//   if (react) technologies.push("react");
-//   if (typescript) technologies.push("typescript");
-
-//   const imagePath = req.file ? req.file.filename : null;
-//   // Update query
-//   const query = `
-//     UPDATE projects 
-//     SET name = $1, start_date = $2, end_date = $3, description = $4, technologies = $5${imagePath ? `, image_path = '${imagePath}'` : ""}
-//     WHERE id = $6
-//   `;
-//   await pool.query(query, [name, startDate, endDate, desc, technologies, id]);
-//   res.redirect("/project");
-// });
-
 // Menghapus Proyek
 app.post("/project/delete/:id", async (req, res) => {
   const { id } = req.params;
@@ -170,7 +141,7 @@ app.post("/project/delete/:id", async (req, res) => {
 
     res.redirect("/project");
   } catch (error) {
-    console.error("Error saat menghapus project:", error);
+    console.error("Gak bisa menghapus project:", error);
     res.status(500).send("Terjadi kesalahan");
   }
 });
