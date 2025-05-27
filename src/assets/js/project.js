@@ -35,21 +35,19 @@ function getData(event) {
     durationLabel = `${durationInMonths} bulan`;
   }
 
-  // Validasi tanggal mulai dan selesai tidak boleh kosong
   if (isNaN(start.getTime()) || isNaN(end.getTime()) || end < start) {
     alert("Tanggal mulai atau selesai tidak valid!");
     return;
   }
 
-  // Berikan foto project dari yang dipilih user berdasarkan linknya, jika user gak pilih pakai foto default
-  let photoProject = photo ? URL.createObjectURL(photo) : "/assets/img/logo-dumbways.png";
+  let photoProject = photo ? URL.createObjectURL(photo) : "assets/img/logo-dumbways.png";
 
   const iconsHTML = Array.from(checkboxes)
     .filter((cb) => cb.checked && iconMap[cb.value])
     .map((cb) => {
       const iconName = cb.value;
       const iconSrc = iconMap[iconName];
-      return `<img src="/assets/icons/${iconSrc}" style="width: 40px; height: 40px;" alt="${iconName}">`;
+      return `<img src="assets/icon/${iconSrc}" style="width: 40px; height: 40px;" alt="${iconName}">`;
     });
 
   // Buat elemen project card
@@ -59,7 +57,7 @@ function getData(event) {
         <img src="${photoProject}" alt="" style="width: 100%; height: 250px; object-fit: cover; border-radius: 5px;">
         <div class="year" style="display: flex;">
             <h5 class="mt-3" style="font-size: 17px;">${name}</h5>
-            <h5 class="mt-3" style="font-size: 17px;">&nbsp;-&nbsp;${end.getFullYear()}</h5>
+            <h5 class="mt-3" style="font-size: 17px;">&nbsp;-&nbsp;${end.getFullYear()}</h5> 
         </div>
         <div class="mb-3 text-secondary" style="display: flex;">
             <h6 class="me-2" style="font-size: 14px;">Durasi :</h6>

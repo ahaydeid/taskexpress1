@@ -5,15 +5,7 @@ body{
     font-family: "Poppins";
 }
 
-.navbar-expand-lg{
-    background-color: #f4f3f3;
-    height: 65px;
-}
 
-.nav-link{
-    font-size: 20px;
-    margin-right: 40px;
-}
 
 .form form{
     margin: 50px 50px;

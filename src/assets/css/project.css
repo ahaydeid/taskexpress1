@@ -1,143 +1,133 @@
 * {
-    margin: 0;
-    padding: 0;
-    font-family: "Poppins";
-    box-sizing: border-box;
-  }
-  
-
-.navbar-expand-lg{
-    background-color: #f4f3f3;
-    height: 65px;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins";
+  box-sizing: border-box;
 }
 
-.nav-link{
-    font-size: 20px;
-    margin-right: 40px;
+.part-1 {
+  background-color: #dce0e4;
 }
 
-.part-1{
-    background-color: #dce0e4;
+.form form {
+  margin: 50px 50px;
+  width: 700px;
 }
 
-
-.form form{
-    margin: 50px 50px;
-    width: 700px;
+label {
+  margin-top: 40px;
+  font-weight: 600;
+  font-size: 38px;
 }
 
-
-label{
-    margin-top: 40px;
-    font-weight: 600;
-    font-size: 38px;
+.form-control,
+.dropdown button {
+  height: 60px;
+  margin-top: -10px;
+  box-shadow: 1px 3px 11px -1px rgba(0, 0, 0, 0.41);
+  -webkit-box-shadow: 1px 3px 11px -1px rgba(0, 0, 0, 0.41);
+  -moz-box-shadow: 1px 3px 11px -1px rgba(0, 0, 0, 0.41);
 }
 
-.form-control, .dropdown button{
-    height: 60px;
-    margin-top: -10px;
-    box-shadow: 1px 3px 11px -1px rgba(0,0,0,0.41);
-    -webkit-box-shadow: 1px 3px 11px -1px rgba(0,0,0,0.41);
-    -moz-box-shadow: 1px 3px 11px -1px rgba(0,0,0,0.41);
+.btn-submit {
+  font-size: 30px;
+  padding: 5px 45px;
 }
 
-
-.btn-submit{
-    font-size: 30px;
-    padding: 5px 45px;
+span {
+  font-weight: bold;
+  font-size: 25px;
+  justify-content: center;
 }
 
-span{
-    font-weight: bold;
-    font-size: 25px;
-    justify-content: center;
-}
-
-.part-2{
-    padding: 50px;
+.part-2 {
+  padding: 50px;
 }
 
 .project-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns dalam 1 row */
-    gap: 20px;
-    padding: 20px;
-  }
-  
-  .project-card {
-    background-color: white;
-    padding: 15px 15px 0px 15px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-  }
-  
-
-.flex-fill{
-    padding-top: 0px;
-    padding-bottom: 0px;
-    background-color: #000; 
-    color: white; 
-    border-radius: 5px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns dalam 1 row */
+  gap: 20px;
+  padding: 20px;
 }
 
+.project-card {
+  background-color: white;
+  padding: 15px 15px 0px 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.flex-fill {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: #000;
+  color: white;
+  border-radius: 5px;
+}
 
 .custom-file-upload {
-    display: flex;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: white;
-    height: 60px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-  }
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: white;
+  height: 60px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
 
-  .choose-label {
-    background-color: #e0e0e0;
-    padding: 0 16px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    font-weight: 500;
-    font-size: 40px;
-    color: #9c9c9c;
-    border-right: 1px solid #ccc;
-    border-radius: 10px;
-  }
+.choose-label {
+  background-color: #e0e0e0;
+  padding: 0 16px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 40px;
+  color: #9c9c9c;
+  border-right: 1px solid #ccc;
+  border-radius: 10px;
+}
 
-  .file-input {
-    flex: 1;
-    padding: 0 10px;
-    height: 100%;
-    font-size: 14px;
-  }
+.file-input {
+  flex: 1;
+  padding: 0 10px;
+  height: 100%;
+  font-size: 14px;
+}
 
-  .file-input::file-selector-button {
-    display: none;
-    border-radius: 5px;
-  }
+.file-input::file-selector-button {
+  display: none;
+  border-radius: 5px;
+}
 
-  .icon {
-    background-color: white;
-    padding: 0 20px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    border-radius: 5px;
-  }
+.icon {
+  background-color: white;
+  padding: 0 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+}
 
-  input[type="file"] {
-    cursor: pointer;
-  }
+input[type="file"] {
+  cursor: pointer;
+}
 
-  .checkbox{
-    height: 25px;
-    width: 25px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-  }
+.checkbox {
+  height: 25px;
+  width: 25px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
 
-  .desc-box{
-    height: 80px;
-    overflow: hidden;
-    margin-bottom: 25px;
-  }
+.desc-box {
+  height: 80px;
+  overflow: hidden;
+  margin-bottom: 25px;
+}
+
+/* .icon-stack {
+  width: 40px;
+  height: 40px;
+} */
