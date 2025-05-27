@@ -87,7 +87,6 @@ app.post("/submit", upload.single("image-project"), async (req, res) => {
     technologies,
     imagePath,
   ]);
-  console.log("Technologies:", technologies);
   res.redirect("/project");
 });
 
@@ -109,44 +108,38 @@ app.get("/project/:id", async (req, res) => {
   });
 });
 
-// Mengedit Proyek
-// Menampilkan Form Edit
-app.get("/project/edit/:id", async (req, res) => {
-  const { id } = req.params;
-  const result = await pool.query("SELECT * FROM projects WHERE id = $1", [id]);
-  const project = result.rows[0];
+// Edit Proyek
+// app.get("/project/edit/:id", async (req, res) => {
+//   const { id } = req.params;
+//   const result = await pool.query("SELECT * FROM projects WHERE id = $1", [id]);
+//   const project = result.rows[0];
 
-  if (!project) {
-    return res.status(404).send("Project not found");
-  }
+//   if (!project) {
+//     return res.status(404).send("Project not found");
+//   }
+//   res.render("edit", { project });
+// });
 
-  res.render("edit", { project });
-});
+// app.post("/project/edit/:id", upload.single("image-project"), async (req, res) => {
+//   const { id } = req.params;
+//   const { name, "start-date": startDate, "end-date": endDate, desc, node, next, react, typescript } = req.body;
 
+//   const technologies = [];
+//   if (node) technologies.push("node");
+//   if (next) technologies.push("next");
+//   if (react) technologies.push("react");
+//   if (typescript) technologies.push("typescript");
 
-app.post("/project/edit/:id", upload.single("image-project"), async (req, res) => {
-  const { id } = req.params;
-  const { name, "start-date": startDate, "end-date": endDate, desc, node, next, react, typescript } = req.body;
-
-  const technologies = [];
-  if (node) technologies.push("node");
-  if (next) technologies.push("next");
-  if (react) technologies.push("react");
-  if (typescript) technologies.push("typescript");
-
-  const imagePath = req.file ? req.file.filename : null;
-
-  // Update query
-  const query = `
-    UPDATE projects 
-    SET name = $1, start_date = $2, end_date = $3, description = $4, technologies = $5${imagePath ? `, image_path = '${imagePath}'` : ""}
-    WHERE id = $6
-  `;
-
-  await pool.query(query, [name, startDate, endDate, desc, technologies, id]);
-  res.redirect("/project");
-});
-
+//   const imagePath = req.file ? req.file.filename : null;
+//   // Update query
+//   const query = `
+//     UPDATE projects 
+//     SET name = $1, start_date = $2, end_date = $3, description = $4, technologies = $5${imagePath ? `, image_path = '${imagePath}'` : ""}
+//     WHERE id = $6
+//   `;
+//   await pool.query(query, [name, startDate, endDate, desc, technologies, id]);
+//   res.redirect("/project");
+// });
 
 // Menghapus Proyek
 app.post("/project/delete/:id", async (req, res) => {
@@ -171,7 +164,6 @@ app.post("/project/delete/:id", async (req, res) => {
         if (err) {
           console.error("Gagal menghapus file:", err);
         } else {
-          console.log("File berhasil dihapus:", filePath);
         }
       });
     }
