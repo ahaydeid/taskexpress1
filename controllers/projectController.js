@@ -23,6 +23,7 @@ export const submitProject = async (req, res) => {
   if (end.getDate() >= start.getDate()) durationInMonths += 1;
 
   let tempDur = "";
+  // Menterjemahkan ke dalam tulisan
   if (durationInMonths < 1) tempDur = ">1 bulan";
   else if (durationInMonths >= 36) tempDur = ">3 tahun";
   else if (durationInMonths >= 24) tempDur = "2 tahun";
