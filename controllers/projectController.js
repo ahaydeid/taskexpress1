@@ -6,14 +6,18 @@ export const getAllProjects = async (req, res) => {
   res.render("project", { project: result.rows });
 };
 
+// Create Project
 export const submitProject = async (req, res) => {
   const { name, "start-date": startDate, "end-date": endDate, desc, node, next, react, typescript } = req.body;
 
+  // Untuk checkbox technologies, kalau diceklis, maka nilainya push ke array technologies
   const technologies = [];
   if (node) technologies.push("node");
   if (next) technologies.push("next");
   if (react) technologies.push("react");
   if (typescript) technologies.push("typescript");
+
+  // Untuk inputan image
   const imagePath = req.file ? req.file.filename : null;
 
   const start = new Date(startDate);
@@ -49,6 +53,7 @@ export const getProjectDetail = async (req, res) => {
   const result = await pool.query("SELECT * FROM projects WHERE id = $1", [id]);
   const project = result.rows[0];
 
+  // Untuk Isi durasi (Tanggal - Tanggal)
   const options = { day: "2-digit", month: "short", year: "numeric" };
   const startDateFormatted = new Date(project.start_date).toLocaleDateString("en-GB", options);
   const endDateFormatted = new Date(project.end_date).toLocaleDateString("en-GB", options);
