@@ -5,8 +5,7 @@ let dropdownText = document.getElementById("dropdownText"); // Lokasi ngasih val
 items.forEach((item) => {
   // Looping semua item yang ada di dropdown
   item.addEventListener("click", function () {
-    // Ketika item di klik
-    // Ambil value dari item yang di klik
+    // Ketika item di klik, ambil value dari item yang di klik
     dropdownText.textContent = this.textContent; // Tampilkan value yang dipilih di dropdown
     selectedSubject = this.textContent; // Simpan nilai yang dipilih
   });

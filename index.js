@@ -6,13 +6,13 @@ const app = express();
 const port = 3000;
 
 // View engine setup
-app.use(express.json());
 app.set("view engine", "hbs");
 app.set("views", "src/views");
 hbs.registerPartials("src/views/partials");
 hbs.registerHelper("eq", (a, b) => a === b);
 
 // Middleware
+app.use(express.json());
 app.use("/assets", express.static("src/assets"));
 app.use("/uploads", express.static("uploads"));
 app.use(express.urlencoded({ extended: true }));
